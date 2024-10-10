@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Crab & Monkey</title>
+    <style>
+        .correct-answer {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>SaruKani Quiz</h1>
+
+    <form id="quizForm">
+        <!-- Frage 1 -->
+        <h3>Frage 1: Was wollte der Affe von der Krabbe im Tausch für seinen Kakisamen?</h3>
+        <label><input type="radio" name="q1" value="A"> A) Einen Apfel</label><br>
+        <label><input type="radio" name="q1" value="B"> B) Einen Reisbällchen</label><br>
+        <label><input type="radio" name="q1" value="C"> C) Ein Stück Brot</label><br>
+        <label><input type="radio" name="q1" value="D"> D) Eine Kastanie</label><br>
+        <label><input type="radio" name="q1" value="E"> E) Einen Mörser</label><br>
+        <p id="q1-correct" class="correct-answer"></p>
+
+        <!-- Frage 2 -->
+        <h3>Frage 2: Warum konnte die Krabbe die Kakis nicht vom Baum pflücken?</h3>
+        <label><input type="radio" name="q2" value="A"> A) Der Baum war zu klein.</label><br>
+        <label><input type="radio" name="q2" value="B"> B) Die Krabbe wollte nicht klettern.</label><br>
+        <label><input type="radio" name="q2" value="C"> C) Der Hund läuft davon.</label><br>
+        <label><input type="radio" name="q2" value="D"> D) Der Affe hat die Früchte gestohlen.</label><br>
+        <label><input type="radio" name="q2" value="E"> E) Die Krabbe hatte keine Lust.</label><br>
+        <p id="q2-correct" class="correct-answer"></p>
+
+        <!-- Frage 3 -->
+        <h3>Frage 3: Was tat der Affe, nachdem er auf den Baum geklettert war?</h3>
+        <label><input type="radio" name="q3" value="A"> A) Er pflückte die Kakis und teilte sie mit der Krabbe.</label><br>
+        <label><input type="radio" name="q3" value="B"> B) Er warf die Kakis auf den Boden.</label><br>
+        <label><input type="radio" name="q3" value="C"> C) Er aß alle Kakis alleine.</label><br>
+        <label><input type="radio" name="q3" value="D"> D) Er pflanzte einen neuen Baum.</label><br>
+        <label><input type="radio" name="q3" value="E"> E) Er half der Krabbe, die Kakis zu ernten.</label><br>
+        <p id="q3-correct" class="correct-answer"></p>
+
+        <!-- Frage 4 -->
+        <h3>Frage 4: Welche Tiere halfen den Krabbenkindern, sich am Affen zu rächen?</h3>
+        <label><input type="radio" name="q4" value="A"> A) Eine Biene, ein Mörser und eine Kastanie</label><br>
+        <label><input type="radio" name="q4" value="B"> B) Ein Löwe, eine Schlange und eine Spinne</label><br>
+        <label><input type="radio" name="q4" value="C"> C) Ein Vogel, eine Maus und eine Eule</label><br>
+        <label><input type="radio" name="q4" value="D"> D) Ein Fisch, eine Schildkröte und ein Frosch</label><br>
+        <label><input type="radio" name="q4" value="E"> E) Ein Hase, ein Fuchs und ein Bär</label><br>
+        <p id="q4-correct" class="correct-answer"></p>
+
+        <!-- Frage 5 -->
+        <h3>Frage 5: Was geschah mit dem Affen, nachdem er von der Kastanie, der Biene und dem Mörser angegriffen wurde?</h3>
+        <label><input type="radio" name="q5" value="A"> A) Er wurde König des Waldes.</label><br>
+        <label><input type="radio" name="q5" value="B"> B) Er versprach, nie wieder gierig zu sein.</label><br>
+        <label><input type="radio" name="q5" value="C"> C) Er rannte davon und kehrte nie zurück.</label><br>
+        <label><input type="radio" name="q5" value="D"> D) Er pflanzte einen neuen Baum für die Krabben.</label><br>
+        <label><input type="radio" name="q5" value="E"> E) Er griff die Krabbenkinder an.</label><br>
+        <p id="q5-correct" class="correct-answer"></p>
+
+        <br>
+        <input type="button" value="Ergebnisse anzeigen" onclick="calculateScore()">
+    </form>
+
+    <h2 id="score"></h2>
+
+    <script>
+        function calculateScore() {
+            // Richtige Antworten
+            const correctAnswers = {
+                q1: 'B',
+                q2: 'C',
+                q3: 'C',
+                q4: 'A',
+                q5: 'B'
+            };
+
+            let score = 0;
+            const form = document.forms['quizForm'];
+
+            // Durch alle Fragen iterieren
+            for (let question in correctAnswers) {
+                const userAnswer = form[question].value;
+                const correctAnswer = correctAnswers[question];
+
+                // Richtig oder falsch überprüfen und Punkt hinzufügen
+                if (userAnswer === correctAnswer) {
+                    score++;
+                }
+
+                // Richtige Antwort anzeigen
+                document.getElementById(`${question}-correct`).innerText = `Die richtige Antwort ist: ${correctAnswer}`;
+            }
+
+            // Score anzeigen
+            document.getElementById('score').innerText = `Dein Ergebnis: ${score}/5`;
+        }
+    </script>
+</body>
+</html>
